@@ -2,3 +2,10 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+
+// ~ Menandakan folder node_modules
+@import '~vuetify/src/styles/styles.sass';
+
+$material-light: (
+  'background': #e2e8f1
+)

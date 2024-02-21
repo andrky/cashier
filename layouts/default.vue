@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer v-model="sideDrawer" fixed app>
       <v-list>
         <v-list-item

@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <!-- SideBar -->
     <v-navigation-drawer v-model="sideDrawer" fixed app>
       <v-list>
         <v-list-item
@@ -19,16 +20,19 @@
       </v-list>
     </v-navigation-drawer>
 
+    <!-- Top App Bar -->
     <v-app-bar fixed app>
       <v-toolbar-title v-text="title" />
     </v-app-bar>
 
+    <!-- Main Content -->
     <v-main>
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
 
+    <!-- Bottom Navigation -->
     <v-bottom-navigation horizontal fixed height="10vh" color="primary" app>
       <v-app-bar-nav-icon
         @click.stop="sideDrawer = !sideDrawer"
@@ -74,7 +78,7 @@ export default {
           icon: 'mdi-home',
           title: 'Application',
           to: '/',
-        }
+        },
       ],
       title: 'Cashier',
     }

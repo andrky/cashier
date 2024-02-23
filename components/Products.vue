@@ -2,7 +2,12 @@
   <v-row>
     <!-- Membuat pencarian -->
     <v-row class="mt-3">
-      <v-col cols="10"> Search </v-col>
+      <v-col cols="10">
+        <v-autocomplete
+          label="Products"
+          placeholder="Start typing to search"
+        ></v-autocomplete>
+      </v-col>
       <v-col cols="2">
         <!-- Button -->
         <v-menu>
@@ -18,6 +23,7 @@
               <!-- Menampilkan data list item dari categories -->
               <v-list-item
                 v-for="(category, index) in categories"
+                :key="index"
                 :value="category.id"
                 :disabled="category.id == categoryId"
               >
@@ -32,7 +38,7 @@
     <!-- Membuat component products -->
     <v-row>
       <!-- Mengambil data dari computed filteredProducts -->
-      <v-col cols="2" v-for="(product, index) in filteredProducts">
+      <v-col cols="2" v-for="(product, index) in filteredProducts" :key="index">
         <!-- Buat card -->
         <v-card :title="product.title" outlined elevation="2" :ripple="true">
           <v-actions>

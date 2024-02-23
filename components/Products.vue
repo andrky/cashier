@@ -1,22 +1,25 @@
 <template>
   <v-row>
-    <!-- Membuat Pencarian -->
+    <!-- Membuat pencarian -->
     <v-row class="mt-3">
       <v-col cols="10"> Search </v-col>
       <v-col cols="2">
         <!-- Button -->
         <v-menu>
-          <!-- Membuat Button Category -->
+          <!-- Membuat button category -->
           <template v-slot:activator="{ on: category }">
             <v-btn v-on="category" color="primary">Category </v-btn>
           </template>
 
-          <!-- Menu Setelah Button Category Di Pencet -->
+          <!-- Menu setelah button category di pencet -->
           <v-list>
+            <!-- V-model hasil dari value -->
             <v-list-item-group v-model="categoryId">
+              <!-- Menampilkan data list item dari categories -->
               <v-list-item
                 v-for="(category, index) in categories"
                 :value="category.id"
+                :disabled="category.id == categoryId"
               >
                 <v-list-item-title>{{ category.title }}</v-list-item-title>
               </v-list-item>
@@ -26,10 +29,11 @@
       </v-col>
     </v-row>
 
-    <!-- Membuat Component Products -->
+    <!-- Membuat component products -->
     <v-row>
+      <!-- Mengambil data dari computed filteredProducts -->
       <v-col cols="2" v-for="(product, index) in filteredProducts">
-        <!-- Buat Card -->
+        <!-- Buat card -->
         <v-card :title="product.title" outlined elevation="2" :ripple="true">
           <v-actions>
             <v-img
@@ -181,10 +185,14 @@ export default {
     }
   },
   computed: {
+    // Membuat filter
     filteredProducts() {
+      // Jika categoryId tidak false atau memiliki nilai
       if (this.categoryId) {
+        // Lakukan filter berdasarkan category dari product dengan categoryId dari v-model
         return this.products.filter((s) => s.categoryId == this.categoryId)
       }
+      // Jika bernilai false tampilkan seluruh products
       return this.products
     },
   },

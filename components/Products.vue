@@ -8,6 +8,9 @@
           placeholder="Start typing to search"
           :search-input.sync="search"
           :loading="isLoading"
+          :items="itemSearch"
+          item-text="title"
+          item-value="id"
         >
         </v-autocomplete>
       </v-col>
@@ -65,6 +68,7 @@
 export default {
   data() {
     return {
+      // Button category
       categoryId: false,
       categories: [
         {
@@ -84,6 +88,7 @@ export default {
           title: 'Televisi',
         },
       ],
+      // Data produk
       products: [
         {
           id: 1,
@@ -191,6 +196,8 @@ export default {
           price: '8000000',
         },
       ],
+      // v-autocomplete
+      itemSearch: [],
       search: null,
       isLoading: false,
     }
@@ -213,8 +220,12 @@ export default {
       console.log(val)
       // Animasi ketika melakukan pencarian pada underline kolom search
       this.isLoading = true
+      // Set animasi selama 3ms, dilakukan filter berdasarkan val dan disimpan sebagai objek di itemSearch
       setTimeout(() => {
-        this.isLoading = false
+        this.itemSearch = this.products.filter((e) => {
+          this.isLoading = false
+          return e
+        })
       }, 3000)
     },
   },

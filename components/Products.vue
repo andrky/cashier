@@ -11,6 +11,8 @@
           :items="itemSearch"
           item-text="title"
           item-value="id"
+          v-model="selectedSearch"
+          return-object
         >
         </v-autocomplete>
       </v-col>
@@ -200,6 +202,7 @@ export default {
       itemSearch: [],
       search: null,
       isLoading: false,
+      selectedSearch: null,
     }
   },
   computed: {
@@ -207,8 +210,12 @@ export default {
     filteredProducts() {
       // Jika categoryId tidak false atau memiliki nilai
       if (this.categoryId) {
-        // Lakukan filter berdasarkan category dari product dengan categoryId dari v-model
+        // Lakukan filter berdasarkan category dari data products dengan categoryId dari v-model
         return this.products.filter((s) => s.categoryId == this.categoryId)
+      }
+      // Lakukan filter berdasarkan judul dari data products dengan judul dari v-model
+      else if (this.selectedSearch) {
+        return this.products.filter((s) => s.title == this.selectedSearch.title)
       }
       // Jika bernilai false tampilkan seluruh products
       return this.products
@@ -217,14 +224,13 @@ export default {
   watch: {
     // Kondisi Pencarian
     search(val) {
-      console.log(val)
       // Animasi ketika melakukan pencarian pada underline kolom search
       this.isLoading = true
       // Set animasi selama 3ms, dilakukan filter berdasarkan val dan disimpan sebagai objek di itemSearch
       setTimeout(() => {
         this.itemSearch = this.products.filter((e) => {
           this.isLoading = false
-          return e
+          return e.title
         })
       }, 3000)
     },

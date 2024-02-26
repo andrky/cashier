@@ -205,6 +205,11 @@ export default {
       selectedSearch: null,
     }
   },
+  methods: {
+    resetCategoryId() {
+      this.categoryId = false
+    },
+  },
   computed: {
     // Membuat filter
     filteredProducts() {
@@ -230,6 +235,8 @@ export default {
       setTimeout(() => {
         this.itemSearch = this.products.filter((e) => {
           this.isLoading = false
+          // Reset categoryId supaya bisa melakukan pencarian ketika setelah pilih kategori melalui button
+          this.resetCategoryId()
           return e.title
         })
       }, 3000)

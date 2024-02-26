@@ -27,7 +27,7 @@
 
     <!-- Main Content -->
     <v-main>
-      <v-container fluid>
+      <v-container class="main">
         <Nuxt />
       </v-container>
     </v-main>

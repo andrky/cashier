@@ -13,6 +13,7 @@
           item-value="id"
           v-model="selectedSearch"
           return-object
+          hide-no-data
         >
         </v-autocomplete>
       </v-col>

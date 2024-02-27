@@ -74,24 +74,6 @@ export default {
     return {
       // Button category
       categoryId: false,
-      categories: [
-        {
-          id: false,
-          title: 'All',
-        },
-        {
-          id: 1,
-          title: 'Smartphone',
-        },
-        {
-          id: 2,
-          title: 'Kamera',
-        },
-        {
-          id: 3,
-          title: 'Televisi',
-        },
-      ],
 
       // v-autocomplete
       itemSearch: [],
@@ -122,8 +104,9 @@ export default {
     },
     // Import state dengan nama file products
     ...mapState('products', {
-      // Nama state products disimpan dalam variable products
+      // Nama state products disimpan dalam variable products, nama state categories disimpan dalam variable categories
       products: 'products',
+      categories: 'categories',
     }),
   },
   watch: {

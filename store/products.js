@@ -107,4 +107,23 @@ export const state = () => ({
       price: '8000000',
     },
   ],
+  // Data categories
+  categories: [
+    {
+      id: false,
+      title: 'All',
+    },
+    {
+      id: 1,
+      title: 'Smartphone',
+    },
+    {
+      id: 2,
+      title: 'Kamera',
+    },
+    {
+      id: 3,
+      title: 'Televisi',
+    },
+  ],
 })

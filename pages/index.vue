@@ -2,7 +2,7 @@
   <v-row>
     <!-- Membuat tampilan main content url root -->
     <v-col cols="8" class="frame-content">
-      <products> </products>
+      <product> </product>
     </v-col>
     <v-col cols="4 frame-content white"> ORDER </v-col>
   </v-row>

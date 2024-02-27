@@ -133,7 +133,16 @@ export const state = () => ({
 // Buat mutatuion
 export const mutations = {
   updateCategoryId(state, valCategoryId) {
-    // Menyimpan value category.id yang dipilih ke dalam variable di state.categoryId
+    // Menyimpan categoryId yang dipilih ke dalam variable di state.categoryId
     state.categoryId = valCategoryId
+  },
+}
+
+// Buat actions (asynchronize)
+// Satu action bisa commit beberapa mutation
+export const actions = {
+  updateCategoryId({ commit }, valCategoryId) {
+    // Melakukan commit berdasarkan mutation
+    commit('updateCategoryId', valCategoryId)
   },
 }

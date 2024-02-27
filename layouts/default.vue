@@ -22,7 +22,9 @@
 
     <!-- Top App Bar -->
     <v-app-bar fixed app>
-      <v-toolbar-title v-text="title" />
+      <NuxtLink to="/" class="text-decoration-none">
+        <v-toolbar-title v-text="title" :to="to" />
+      </NuxtLink>
     </v-app-bar>
 
     <!-- Main Content -->

@@ -19,7 +19,7 @@
       </v-col>
       <v-col cols="2" align="right">
         <!-- Button -->
-        <v-menu>
+        <v-menu transition="scale-transition">
           <!-- Membuat button category -->
           <template v-slot:activator="{ on: category }">
             <v-btn v-on="category" color="primary">Category </v-btn>
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     // Import state dengan nama file products
-    ...mapMutations('products', {
+    ...mapActions('products', {
       // Nama state updateCategoryId disimpan dalam variable updateCategoryId
       updateCategoryId: 'updateCategoryId',
     }),

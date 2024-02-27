@@ -28,13 +28,14 @@
           <!-- Menu setelah button category di pencet -->
           <v-list>
             <!-- V-model hasil dari value -->
-            <v-list-item-group v-model="categoryId">
+            <v-list-item-group>
               <!-- Menampilkan data list item dari categories -->
               <v-list-item
                 v-for="(category, index) in categories"
                 :key="index"
                 :value="category.id"
                 :disabled="category.id == categoryId"
+                @change="updateCategoryId(category.id)"
               >
                 <v-list-item-title>{{ category.title }}</v-list-item-title>
               </v-list-item>
@@ -68,13 +69,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   data() {
     return {
-      // Button category
-      categoryId: false,
-
       // v-autocomplete
       itemSearch: [],
       search: null,
@@ -83,6 +81,11 @@ export default {
     }
   },
   methods: {
+    // Import state dengan nama file products
+    ...mapMutations('products', {
+      // Nama state updateCategoryId disimpan dalam variable updateCategoryId
+      updateCategoryId: 'updateCategoryId',
+    }),
     resetCategoryId() {
       this.categoryId = false
     },
@@ -104,9 +107,10 @@ export default {
     },
     // Import state dengan nama file products
     ...mapState('products', {
-      // Nama state products disimpan dalam variable products, nama state categories disimpan dalam variable categories
+      // Nama state products disimpan dalam variable products, nama state categories disimpan dalam variable categories, nama state categoryId disimpan dalam variable categoryId,
       products: 'products',
       categories: 'categories',
+      categoryId: 'categoryId',
     }),
   },
   watch: {

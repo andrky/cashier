@@ -126,4 +126,14 @@ export const state = () => ({
       title: 'Televisi',
     },
   ],
+  // Menampilkan berdasarkan category
+  categoryId: 0,
 })
+
+// Buat mutatuion
+export const mutations = {
+  updateCategoryId(state, valCategoryId) {
+    // Menyimpan value category.id yang dipilih ke dalam variable di state.categoryId
+    state.categoryId = valCategoryId
+  },
+}

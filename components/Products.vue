@@ -1,7 +1,7 @@
 <template>
-  <v-row>
+  <section>
     <!-- Membuat pencarian -->
-    <v-row class="mt-3">
+    <v-row class="mt-3" align="center">
       <v-col cols="10">
         <v-autocomplete
           label="Products"
@@ -17,7 +17,7 @@
         >
         </v-autocomplete>
       </v-col>
-      <v-col cols="2">
+      <v-col cols="2" align="right">
         <!-- Button -->
         <v-menu>
           <!-- Membuat button category -->
@@ -64,7 +64,7 @@
         </v-card>
       </v-col>
     </v-row>
-  </v-row>
+  </section>
 </template>
 
 <script>

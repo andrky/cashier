@@ -50,7 +50,13 @@
       <!-- Mengambil data dari computed filteredProducts -->
       <v-col cols="2" v-for="(product, index) in filteredProducts" :key="index">
         <!-- Buat card -->
-        <v-card :title="product.title" outlined elevation="2" :ripple="true">
+        <v-card
+          @click="addToCart(product.id)"
+          :title="product.title"
+          outlined
+          elevation="2"
+          :ripple="true"
+        >
           <v-actions>
             <v-img
               class="my-3 mx-3"
@@ -82,9 +88,11 @@ export default {
   },
   methods: {
     // Import state dengan nama file products
-    ...mapActions('products', {
-      // Nama state updateCategoryId disimpan dalam variable updateCategoryId
-      updateCategoryId: 'updateCategoryId',
+    ...mapActions({
+      // Nama state updateCategoryId pada file products disimpan dalam variable updateCategoryId
+      updateCategoryId: 'products/updateCategoryId',
+      // Nama state addToCart pada file carts disimpan dalam variable addToCart
+      addToCart: 'carts/addToCart',
     }),
     resetCategoryId() {
       this.categoryId = false

@@ -5,7 +5,6 @@
       <product> </product>
     </v-col>
     <v-col cols="4 frame-content white">
-      Order
       <order></order>
     </v-col>
   </v-row>

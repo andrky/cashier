@@ -9,10 +9,28 @@
         <v-list-item v-for="(item, index) in cartItems" :key="index">
           <v-list-item-content>
             <v-list-item-title>{{ item.title }}</v-list-item-title>
-            <v-list-item-subtitle
-              >{{ currency(item.price) }} X
-              {{ item.quantity }}</v-list-item-subtitle
-            >
+            <v-list-item-subtitle>
+              {{ currency(item.price) }} X
+              <v-btn
+                x-small
+                icon
+                px="0"
+                color="primary"
+                @click="decrement(item.id)"
+              >
+                <v-icon>mdi-chevron-down</v-icon>
+              </v-btn>
+              {{ item.quantity }}
+              <v-btn
+                x-small
+                icon
+                px="0"
+                color="primary"
+                @click="increment(item.id)"
+              >
+                <v-icon>mdi-chevron-up</v-icon>
+              </v-btn>
+            </v-list-item-subtitle>
           </v-list-item-content>
           <v-list-action>
             <v-list-item-title>{{
@@ -33,6 +51,10 @@ export default {
     currency(val) {
       return Intl.NumberFormat('id-ID').format(val)
     },
+    ...mapActions('carts', {
+      increment: 'increment',
+      decrement: 'decrement',
+    }),
   },
   computed: {
     // // Menampilkan state dengan nama file carts

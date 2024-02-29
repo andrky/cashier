@@ -45,6 +45,14 @@ export const mutations = {
   incrementItem(state, id) {
     state.items.find((item) => item.id === id).quantity++
   },
+  // Buat mutation untuk mengurangi quantity jika sudah ada id yang sama pada state items
+  decrementItem(state, id) {
+    let product = state.items.find((item) => item.id === id)
+
+    if (product.quantity > 1) {
+      product.quantity--
+    }
+  },
 }
 
 // Membuat action berdasarkan mutation dengan membawa id yang di klik pada card
@@ -61,5 +69,13 @@ export const actions = {
     else {
       commit('addItem', id)
     }
+  },
+  // Action untuk menambahkan jumlah item
+  increment({ commit }, id) {
+    commit('incrementItem', id)
+  },
+  // Action untuk mengurangi jumlah item
+  decrement({ commit }, id) {
+    commit('decrementItem', id)
   },
 }

@@ -25,6 +25,11 @@ export const getters = {
       }
     })
   },
+
+  // Membuat fungsi untuk menghitung total menggunakan getters
+  itemTotal: () => (price, quantity) => {
+    return price * quantity
+  },
 }
 
 // Buat mutation

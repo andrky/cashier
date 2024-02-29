@@ -14,6 +14,11 @@
               {{ item.quantity }}</v-list-item-subtitle
             >
           </v-list-item-content>
+          <v-list-action>
+            <v-list-item-title>{{
+              currency(itemTotal(item.price, item.quantity))
+            }}</v-list-item-title>
+          </v-list-action>
         </v-list-item>
       </v-list>
     </v-col>
@@ -37,8 +42,10 @@ export default {
     // }),
     // Menampilkan state dengan nama file carts
     ...mapGetters('carts', {
-      // Nama getters cartItems disimpan dalam objek cartItems
+      // Nama getters cartItems disimpan dalam objek cartItems berisi data yang sudah dimanipulasi pada getters
       cartItems: 'cartItems',
+      // Nama getters cartItems disimpan dalam objek itemTotal berisi fungsi untuk menghitung total
+      itemTotal: 'itemTotal',
     }),
   },
 }

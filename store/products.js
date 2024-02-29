@@ -130,7 +130,7 @@ export const state = () => ({
   categoryId: 0,
 })
 
-// Buat mutatuion
+// Buat mutation
 export const mutations = {
   updateCategoryId(state, valCategoryId) {
     // Menyimpan categoryId yang dipilih ke dalam objek di state.categoryId

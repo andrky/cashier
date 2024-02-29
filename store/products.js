@@ -133,7 +133,7 @@ export const state = () => ({
 // Buat mutatuion
 export const mutations = {
   updateCategoryId(state, valCategoryId) {
-    // Menyimpan categoryId yang dipilih ke dalam variable di state.categoryId
+    // Menyimpan categoryId yang dipilih ke dalam objek di state.categoryId
     state.categoryId = valCategoryId
   },
 }

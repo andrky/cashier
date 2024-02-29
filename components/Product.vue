@@ -89,9 +89,9 @@ export default {
   methods: {
     // Import state dengan nama file products
     ...mapActions({
-      // Nama state updateCategoryId pada file products disimpan dalam variable updateCategoryId
+      // Nama state updateCategoryId pada file products disimpan dalam objek updateCategoryId
       updateCategoryId: 'products/updateCategoryId',
-      // Nama state addToCart pada file carts disimpan dalam variable addToCart
+      // Nama state addToCart pada file carts disimpan dalam objek addToCart
       addToCart: 'carts/addToCart',
     }),
     resetCategoryId() {
@@ -113,9 +113,9 @@ export default {
       // Jika bernilai false tampilkan seluruh products
       return this.products
     },
-    // Import state dengan nama file products
+    // Menampilkan state dengan nama file products
     ...mapState('products', {
-      // Nama state products disimpan dalam variable products, nama state categories disimpan dalam variable categories, nama state categoryId disimpan dalam variable categoryId,
+      // Nama state products disimpan dalam objek products, nama state categories disimpan dalam objek categories, nama state categoryId disimpan dalam objek categoryId,
       products: 'products',
       categories: 'categories',
       categoryId: 'categoryId',

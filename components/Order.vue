@@ -9,9 +9,10 @@
         <v-list-item v-for="(item, index) in cartItems" :key="index">
           <v-list-item-content>
             <v-list-item-title>{{ item.title }}</v-list-item-title>
-            <v-list-item-subtitle>{{
-              currency(item.price)
-            }}</v-list-item-subtitle>
+            <v-list-item-subtitle
+              >{{ currency(item.price) }} X
+              {{ item.quantity }}</v-list-item-subtitle
+            >
           </v-list-item-content>
         </v-list-item>
       </v-list>

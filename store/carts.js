@@ -53,6 +53,12 @@ export const mutations = {
       product.quantity--
     }
   },
+  // Buat mutation untuk menghapus item jika sudah ada id yang sama pada state items
+  removeItem(state, id) {
+    let index = state.items.findIndex((item) => item.id === id)
+    // console.log(index)
+    state.items.splice(index, 1)
+  },
 }
 
 // Membuat action berdasarkan mutation dengan membawa id yang di klik pada card
@@ -77,5 +83,9 @@ export const actions = {
   // Action untuk mengurangi jumlah item
   decrement({ commit }, id) {
     commit('decrementItem', id)
+  },
+  // Action untuk menghapus item
+  remove({ commit }, id) {
+    commit('removeItem', id)
   },
 }

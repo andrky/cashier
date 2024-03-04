@@ -44,7 +44,7 @@ export const getters = {
   },
 
   // Membuat fungsi untuk menghitung sub total menggunakan reduce
-  // total merupakan jumlah keseluruhan, 0 merupakan nilai awal dari total
+  // total merupakan jumlah keseluruhan dari fungsi reduce, 0 merupakan nilai awal dari total
   subTotal: (state, getters) => {
     return getters.cartItems.reduce((total, item) => {
       return total + item.price * item.quantity
@@ -54,6 +54,29 @@ export const getters = {
   // Membuat fungsi untuk menghitung persentase
   calculatePercentage: (state, getters) => (value) => {
     return (getters.subTotal * value) / 100
+  },
+
+  // Membuat fungsi untuk menghitung additional
+  // total merupakan jumlah keseluruhan dari fungsi reduce, 0 merupakan nilai awal dari total
+  sumAdditional: (state, getters) => {
+    // Cek apakah state additional kosong atau tidak
+    if (state.additional.length) {
+      // Jika tidak kosong lakukan jumlah total berdasarkan state additional
+      return state.additional.reduce((total, item) => {
+        // Jika item.mode == percentage
+        if (item.mode == 'percentage') {
+          // Lakukan jumlah total dengan getter calculatePercentage
+          return total + getters.calculatePercentage(item.value)
+        }
+        // Lakukan jumlah total dengan item.value (mode fixed)
+        return total + item.value
+      }, 0)
+    }
+  },
+
+  // Membuat fungsi untuk menghitung total
+  total: (state, getters) => {
+    return getters.subTotal + getters.sumAdditional
   },
 }
 

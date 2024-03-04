@@ -109,6 +109,22 @@
             </v-list-item>
           </template>
         </v-list-group>
+
+        <!-- Menampilan total -->
+        <v-list-item
+          v-if="cartItems.length"
+          class="text-h5 black--text grey lighten-2 font-weight-black"
+        >
+          <!-- Mepet kiri -->
+          <v-list-item-content>
+            <v-list-item-title>Total</v-list-item-title>
+          </v-list-item-content>
+
+          <!-- Mepet kanan -->
+          <v-list-item-action>
+            <v-list-item-title>{{ currency(total) }}</v-list-item-title>
+          </v-list-item-action>
+        </v-list-item>
       </v-list>
     </v-col>
   </v-row>
@@ -149,6 +165,7 @@ export default {
       subTotal: 'subTotal',
       // Nama getters calculatePercentage disimpan dalam objek calculatePercentage berisi fungsi untuk menghitung persentase
       calculatePercentage: 'calculatePercentage',
+      total: 'total',
     }),
   },
 }

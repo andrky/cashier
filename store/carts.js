@@ -5,11 +5,11 @@ export const state = () => ({
     {
       title: 'Tax',
       mode: 'percentage',
-      value: 10,
+      value: 11,
     },
     {
       title: 'Service Charge',
-      mode: 'fixed',
+      mode: 'fix',
       value: 50000,
     },
   ],
@@ -49,6 +49,11 @@ export const getters = {
     return getters.cartItems.reduce((total, item) => {
       return total + item.price * item.quantity
     }, 0)
+  },
+
+  // Membuat fungsi untuk menghitung persentase
+  calculatePercentage: (state, getters) => (value) => {
+    return (getters.subTotal * value) / 100
   },
 }
 

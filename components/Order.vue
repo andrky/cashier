@@ -8,7 +8,10 @@
         <!-- Menampilan semua data dari cartItems -->
         <v-list-item v-for="(item, index) in cartItems" :key="index">
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>
+              {{ item.title }}
+            </v-list-item-title>
+
             <v-list-item-subtitle>
               {{ currency(item.price) }} X
               <v-btn
@@ -32,13 +35,29 @@
               </v-btn>
             </v-list-item-subtitle>
           </v-list-item-content>
+
           <v-list-item-action>
             <v-btn icon color="error" x-small @click="remove(item.id)">
               <v-icon>mdi-trash-can</v-icon>
             </v-btn>
-            <v-list-item-title>{{
-              currency(itemTotal(item.price, item.quantity))
-            }}</v-list-item-title>
+
+            <v-list-item-title>
+              {{ currency(itemTotal(item.price, item.quantity)) }}
+            </v-list-item-title>
+          </v-list-item-action>
+        </v-list-item>
+
+        <!-- Menampilan sub total -->
+        <v-list-item
+          v-if="cartItems.length"
+          class="text-h5 black--text grey lighten-2"
+        >
+          <v-list-item-content>
+            <v-list-item-title>Sub Total</v-list-item-title>
+          </v-list-item-content>
+
+          <v-list-item-action>
+            <v-list-item-title>{{ currency(subTotal) }}</v-list-item-title>
           </v-list-item-action>
         </v-list-item>
       </v-list>
@@ -70,8 +89,10 @@ export default {
     ...mapGetters('carts', {
       // Nama getters cartItems disimpan dalam objek cartItems berisi data yang sudah dimanipulasi pada getters
       cartItems: 'cartItems',
-      // Nama getters cartItems disimpan dalam objek itemTotal berisi fungsi untuk menghitung total
+      // Nama getters itemTotal disimpan dalam objek itemTotal berisi fungsi untuk menghitung total
       itemTotal: 'itemTotal',
+      // Nama getters subTotal disimpan dalam objek subTotal berisi fungsi untuk menghitung subtotal
+      subTotal: 'subTotal',
     }),
   },
 }

@@ -26,9 +26,17 @@ export const getters = {
     })
   },
 
-  // Membuat fungsi untuk menghitung total menggunakan getters
+  // Membuat fungsi untuk menghitung total
   itemTotal: () => (price, quantity) => {
     return price * quantity
+  },
+
+  // Membuat fungsi untuk menghitung sub total menggunakan reduce
+  // total merupakan jumlah keseluruhan, 0 merupakan nilai awal dari total
+  subTotal: (state, getters) => {
+    return getters.cartItems.reduce((total, item) => {
+      return total + item.price * item.quantity
+    }, 0)
   },
 }
 

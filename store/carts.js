@@ -1,6 +1,18 @@
-// Membuat state items
+// Membuat state items dan additional
 export const state = () => ({
   items: [],
+  additional: [
+    {
+      title: 'Tax',
+      mode: 'percentage',
+      value: 10,
+    },
+    {
+      title: 'Service Charge',
+      mode: 'fixed',
+      value: 50000,
+    },
+  ],
 })
 
 // Membuat getters yang berfungsi untuk memanipulasi data

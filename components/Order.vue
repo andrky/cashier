@@ -50,7 +50,7 @@
         <!-- Menampilan sub total -->
         <v-list-item
           v-if="cartItems.length"
-          class="text-h5 black--text grey lighten-2"
+          class="text-h5 black--text grey lighten-2 font-weight-black"
         >
           <v-list-item-content>
             <v-list-item-title>Sub Total</v-list-item-title>
@@ -60,6 +60,30 @@
             <v-list-item-title>{{ currency(subTotal) }}</v-list-item-title>
           </v-list-item-action>
         </v-list-item>
+
+        <!-- Menampilkan additional item -->
+        <v-list-group v-if="cartItems.length" class="grey lighten-3">
+          <template v-slot:activator>
+            <v-list-item-content class="text-h5 font-weight-bold">
+              <v-list-item-title> Additional </v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <template v-for="(additional, index) in additional">
+            <v-list-item :key="index" disabled class="black--text">
+              <v-list-item-content class="text-h5">
+                <v-list-item-title>
+                  {{ additional.title }}
+                </v-list-item-title>
+              </v-list-item-content>
+
+              <v-list-item-action>
+                <v-list-item-title>
+                  {{ currency(additional.value) }}
+                </v-list-item-title>
+              </v-list-item-action>
+            </v-list-item>
+          </template>
+        </v-list-group>
       </v-list>
     </v-col>
   </v-row>
@@ -86,6 +110,11 @@ export default {
     //   items: 'items',
     // }),
     // Menampilkan state dengan nama file carts
+    ...mapState('carts', {
+      // Nama state additional disimpan dalam objek additional
+      additional: 'additional',
+    }),
+    // Menampilkan getters dengan nama file carts
     ...mapGetters('carts', {
       // Nama getters cartItems disimpan dalam objek cartItems berisi data yang sudah dimanipulasi pada getters
       cartItems: 'cartItems',

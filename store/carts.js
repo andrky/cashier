@@ -26,7 +26,7 @@ export const getters = {
       // products = nama folder
       // products = nama file
       let product = rootState.products.products.find(
-        (product) => product.id === id
+        (product) => product._id === id
       )
       return {
         // Mengembalikan data
@@ -112,6 +112,7 @@ export const mutations = {
 // Membuat action berdasarkan mutation dengan membawa id yang di klik pada card
 export const actions = {
   addToCart({ commit, state }, id) {
+    alert(id)
     // Mencocokan id pada state items dan pada id yang di klik
     const found = state.items.find((item) => item.id === id)
     // Jika ada

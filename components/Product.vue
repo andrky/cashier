@@ -51,7 +51,7 @@
       <v-col cols="2" v-for="(product, index) in filteredProducts" :key="index">
         <!-- Buat card -->
         <v-card
-          @click="addToCart(product.id)"
+          @click="addToCart(product._id)"
           :title="product.title"
           outlined
           elevation="2"

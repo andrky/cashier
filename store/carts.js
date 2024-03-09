@@ -30,7 +30,7 @@ export const getters = {
       )
       return {
         // Mengembalikan data
-        id: product.id,
+        id: product._id,
         title: product.title,
         price: product.price,
         quantity,
@@ -112,7 +112,6 @@ export const mutations = {
 // Membuat action berdasarkan mutation dengan membawa id yang di klik pada card
 export const actions = {
   addToCart({ commit, state }, id) {
-    alert(id)
     // Mencocokan id pada state items dan pada id yang di klik
     const found = state.items.find((item) => item.id === id)
     // Jika ada

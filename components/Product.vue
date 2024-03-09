@@ -87,12 +87,14 @@ export default {
     }
   },
   methods: {
-    // Import state dengan nama file products
+    // Import action dengan nama file products
     ...mapActions({
-      // Nama state updateCategoryId pada file products disimpan dalam objek updateCategoryId
+      // Nama action updateCategoryId pada file products disimpan dalam objek updateCategoryId
       updateCategoryId: 'products/updateCategoryId',
-      // Nama state addToCart pada file carts disimpan dalam objek addToCart
+      // Nama action addToCart pada file carts disimpan dalam objek addToCart
       addToCart: 'carts/addToCart',
+      // Nama action fetchProducts pada file products disimpan dalam objek fetchProducts
+      fetchProducts: 'products/fetchProducts',
     }),
     resetCategoryId() {
       this.categoryId = false
@@ -136,6 +138,10 @@ export default {
         })
       }, 1500)
     },
+  },
+  // Komponen berhasil di load setelah itu memanggil fetchProducts
+  mounted() {
+    this.fetchProducts()
   },
 }
 </script>

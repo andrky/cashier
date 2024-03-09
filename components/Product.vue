@@ -10,7 +10,7 @@
           :loading="isLoading"
           :items="itemSearch"
           item-text="title"
-          item-value="id"
+          item-value="_id"
           v-model="selectedSearch"
           return-object
           hide-no-data
@@ -33,9 +33,9 @@
               <v-list-item
                 v-for="(category, index) in categories"
                 :key="index"
-                :value="category.id"
-                :disabled="category.id == categoryId"
-                @change="updateCategoryId(category.id)"
+                :value="category._id"
+                :disabled="category._id == categoryId"
+                @change="updateCategoryId(category._id)"
               >
                 <v-list-item-title>{{ category.title }}</v-list-item-title>
               </v-list-item>
@@ -95,6 +95,8 @@ export default {
       addToCart: 'carts/addToCart',
       // Nama action fetchProducts pada file products disimpan dalam objek fetchProducts
       fetchProducts: 'products/fetchProducts',
+      // Nama action fetchCategories pada file products disimpan dalam objek fetchCategories
+      fetchCategories: 'products/fetchCategories',
     }),
     resetCategoryId() {
       this.categoryId = false
@@ -139,9 +141,9 @@ export default {
       }, 1500)
     },
   },
-  // Komponen berhasil di load setelah itu memanggil fetchProducts
+  // Komponen berhasil di load setelah itu memanggil fetchProducts dan fetchCategories
   mounted() {
-    this.fetchProducts()
+    this.fetchProducts(), this.fetchCategories()
   },
 }
 </script>

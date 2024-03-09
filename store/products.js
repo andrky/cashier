@@ -4,20 +4,8 @@ export const state = () => ({
   // Data categories
   categories: [
     {
-      id: false,
+      _id: 0,
       title: 'All',
-    },
-    {
-      id: 1,
-      title: 'Smartphone',
-    },
-    {
-      id: 2,
-      title: 'Kamera',
-    },
-    {
-      id: 3,
-      title: 'Televisi',
     },
   ],
   // Menampilkan berdasarkan category
@@ -30,8 +18,13 @@ export const mutations = {
     // Menyimpan categoryId yang dipilih ke dalam objek di state.categoryId
     state.categoryId = valCategoryId
   },
-  updateProducts(state, products) {
+  // Menyimpan hasil fetch ke state products
+  getProducts(state, products) {
     state.products = products
+  },
+  // Menyimpan hasil fetch ke state categories
+  getCategories(state, categories) {
+    state.categories.push(...categories)
   },
 }
 
@@ -42,12 +35,20 @@ export const actions = {
     // Melakukan commit berdasarkan mutation
     commit('updateCategoryId', valCategoryId)
   },
-  // Fetch data dari database melalui api
+  // Fetch data products dari database melalui api
   fetchProducts({ commit }) {
     return this.$axios
       .$get('http://localhost:3001/products')
       .then((response) => {
-        commit('updateProducts', response.products)
+        commit('getProducts', response.products)
+      })
+  },
+  // Fetch data categories dari database melalui api
+  fetchCategories({ commit }) {
+    return this.$axios
+      .$get('http://localhost:3001/categories')
+      .then((response) => {
+        commit('getCategories', response.categories)
       })
   },
 }

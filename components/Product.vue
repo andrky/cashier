@@ -99,7 +99,7 @@ export default {
       fetchCategories: 'products/fetchCategories',
     }),
     resetCategoryId() {
-      this.categoryId = false
+      this.updateCategoryId(0)
     },
   },
   computed: {
@@ -109,10 +109,6 @@ export default {
       if (this.categoryId) {
         // Lakukan filter berdasarkan category dari data products dengan categoryId dari v-model
         return this.products.filter((s) => s.categoryId == this.categoryId)
-      }
-      // Lakukan filter berdasarkan judul dari data products dengan judul dari v-model
-      else if (this.selectedSearch) {
-        return this.products.filter((s) => s.title == this.selectedSearch.title)
       }
       // Jika bernilai false tampilkan seluruh products
       return this.products
@@ -139,6 +135,12 @@ export default {
           return e.title
         })
       }, 1500)
+    },
+    // Menambahkan product langsung ke dalam cart ketika melakukan pencarian
+    selectedSearch(product) {
+      if (product) {
+        this.addToCart(product._id)
+      }
     },
   },
   // Komponen berhasil di load setelah itu memanggil fetchProducts dan fetchCategories

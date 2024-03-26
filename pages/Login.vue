@@ -15,7 +15,7 @@
         </v-card-actions>
       </v-card>
       <p>
-        Belum punya akun ?
+        Don't have an account ?
         <v-btn to="/register" class="text-decoration-none" plain
           >Register</v-btn
         >

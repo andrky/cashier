@@ -85,5 +85,23 @@ export default {
       title: 'Cashier',
     }
   },
+
+  methods: {
+    isWelcomeScreen() {
+      if (this.$router.currentRoute.path == '/') {
+        this.$router.push('/register')
+      }
+    },
+  },
+  // Watch digunakan untuk melakukan pengecekan
+  watch: {
+    $route() {
+      this.isWelcomeScreen()
+    },
+  },
+  // Mounted dijalankan pertama setelah component di load browser
+  mounted() {
+    this.isWelcomeScreen()
+  },
 }
 </script>

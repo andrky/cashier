@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="8" offset="2" md="4" offset-md="4">
-      <v-card>
+      <v-card class="mb-2">
         <v-toolbar dark color="primary">Register</v-toolbar>
         <v-card-text>
           <v-form>
@@ -20,6 +20,10 @@
           <v-btn color="primary">Register</v-btn>
         </v-card-actions>
       </v-card>
+      <p>
+        Sudah punya akun ?
+        <v-btn to="/login" class="text-decoration-none" plain>Login</v-btn>
+      </p>
     </v-col>
   </v-row>
 </template>

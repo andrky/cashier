@@ -88,8 +88,14 @@ export default {
 
   methods: {
     isWelcomeScreen() {
+      // Kondisi cek welcome screen di local storage ada atau tidak
       if (!localStorage.welcomeScreen) {
-        if (this.$router.currentRoute.path == '/') {
+        // Jika tidak ada welcome screen di local storage dan route pathnya /register dan /login
+        if (
+          this.$router.currentRoute.path !== '/register' &&
+          this.$router.currentRoute.path !== '/login'
+        ) {
+          // Redirect ke /register
           this.$router.push('/register')
         }
       }
@@ -103,6 +109,7 @@ export default {
   },
   // Mounted dijalankan pertama setelah component di load browser
   mounted() {
+    // Set item local storage untuk welcome screen pertama kali diakses
     localStorage.setItem('welcomeScreen', true)
     this.isWelcomeScreen()
   },

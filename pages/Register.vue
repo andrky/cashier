@@ -20,6 +20,7 @@
               type="email"
               :rules="rules.email"
               v-model="form.email"
+              @keyup="checkEmail"
             />
             <v-text-field
               name="password"
@@ -54,6 +55,7 @@
 export default {
   data() {
     return {
+      emailExist: false,
       // Form input dari v-model disimpan disini
       form: {
         fullname: '',
@@ -69,6 +71,7 @@ export default {
         email: [
           (v) => !!v || 'Email is required',
           (v) => /.+@.+.+/.test(v) || 'Email invalid',
+          (v) => !!this.emailExist || 'Email already exist',
         ],
         // Jika password kosong dan kurang dari 8 karakter
         password: [
@@ -85,6 +88,23 @@ export default {
     }
   },
   methods: {
+    // Ketika klik tombol register maka data pada form akan dikirim ke backend menggunakan api
+    checkEmail() {
+      this.$axios
+        .$post('http://localhost:3001/auth/check-email', this.form)
+        // Email belum ada di database
+        .then((response) => {
+          console.log(response)
+          this.emailExist = false
+          console.log(this.emailExist)
+        })
+        // Email sudah ada di database
+        .catch((error) => {
+          this.emailExist = true
+          console.log(error)
+          console.log(this.emailExist)
+        })
+    },
     // Ketika klik tombol register maka data pada form akan dikirim ke backend menggunakan api
     onsubmit() {
       console.log(this.form)

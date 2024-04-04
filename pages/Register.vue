@@ -40,7 +40,9 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click="onsubmit">Register</v-btn>
+          <v-btn color="primary" @click="onsubmit" :disabled="isDisabled"
+            >Register</v-btn
+          >
         </v-card-actions>
       </v-card>
       <p>
@@ -56,6 +58,7 @@ export default {
   data() {
     return {
       emailExist: false,
+      isDisabled: false,
       // Form input dari v-model disimpan disini
       form: {
         fullname: '',
@@ -71,7 +74,7 @@ export default {
         email: [
           (v) => !!v || 'Email is required',
           (v) => /.+@.+.+/.test(v) || 'Email invalid',
-          (v) => !!this.emailExist || 'Email already exist',
+          // (v) => !!this.emailExist || 'Email already exist',
         ],
         // Jika password kosong dan kurang dari 8 karakter
         password: [
@@ -107,11 +110,15 @@ export default {
     },
     // Ketika klik tombol register maka data pada form akan dikirim ke backend menggunakan api
     onsubmit() {
+      // Setelah di klik disabled button dulu
+      this.isDisabled = true
       this.$axios
         .$post('http://localhost:3001/auth/register', this.form)
         .then((response) => {
+          // Setelah proses selesai aktifkan button
+          this.isDisabled = false
           // Redirect to login
-          this.$router.push('/login')
+          // this.$router.push('/login')
           // console.log(response)
         })
     },

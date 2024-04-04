@@ -94,24 +94,25 @@ export default {
         .$post('http://localhost:3001/auth/check-email', this.form)
         // Email belum ada di database
         .then((response) => {
-          console.log(response)
+          // console.log(response)
           this.emailExist = false
           console.log(this.emailExist)
         })
         // Email sudah ada di database
         .catch((error) => {
           this.emailExist = true
-          console.log(error)
+          // console.log(error)
           console.log(this.emailExist)
         })
     },
     // Ketika klik tombol register maka data pada form akan dikirim ke backend menggunakan api
     onsubmit() {
-      console.log(this.form)
       this.$axios
         .$post('http://localhost:3001/auth/register', this.form)
         .then((response) => {
-          console.log(response)
+          // Redirect to login
+          this.$router.push('/login')
+          // console.log(response)
         })
     },
   },

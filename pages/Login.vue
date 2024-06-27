@@ -53,6 +53,9 @@ export default {
     }
   },
   methods: {
+    storeWelcomeScreen() {
+      localStorage.setItem('welcomeScreen', true)
+    },
     // Ketika klik tombol login maka data pada form akan dikirim ke backend menggunakan api
     onsubmit() {
       // Setelah di klik disabled button dulu
@@ -60,6 +63,10 @@ export default {
       this.$axios
         .$post('http://localhost:3001/auth/login', this.form)
         .then((response) => {
+          // Store passed welcome screen
+          if (!localStorage.welcomeScreen) {
+            this.storeWelcomeScreen()
+          }
           // Setelah proses selesai aktifkan button
           this.isDisabled = false
           console.log(response)

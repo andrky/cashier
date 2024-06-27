@@ -69,7 +69,8 @@ export default {
           }
           // Setelah proses selesai aktifkan button
           this.isDisabled = false
-          console.log(response)
+          // Redirect to dashboard
+          this.$router.push('/dashboard')
         })
         .catch((error) => {
           this.isDisabled = false

@@ -40,9 +40,13 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click="onsubmit" :disabled="isDisabled"
-            >Register</v-btn
-          >
+          <v-btn color="primary" @click="onsubmit" :disabled="isDisabled">
+            <!-- Jika isDisabled false fungsikan btn register -->
+            <span v-if="!isDisabled">Register</span>
+            <!-- Jika isDisabled true tampilkan btn animasi -->
+            <v-progress-circular v-else color="primary" indeterminate>
+            </v-progress-circular>
+          </v-btn>
         </v-card-actions>
       </v-card>
       <p>
@@ -97,15 +101,11 @@ export default {
         .$post('http://localhost:3001/auth/check-email', this.form)
         // Email belum ada di database
         .then((response) => {
-          // console.log(response)
           this.emailExist = false
-          console.log(this.emailExist)
         })
         // Email sudah ada di database
         .catch((error) => {
           this.emailExist = true
-          // console.log(error)
-          console.log(this.emailExist)
         })
     },
     // Ketika klik tombol register maka data pada form akan dikirim ke backend menggunakan api
@@ -118,7 +118,7 @@ export default {
           // Setelah proses selesai aktifkan button
           this.isDisabled = false
           // Redirect to login
-          // this.$router.push('/login')
+          this.$router.push('/login')
           // console.log(response)
         })
     },

@@ -40,8 +40,8 @@ export default {
     return {
       // Form input dari v-model disimpan disini
       form: {
-        fullname: '',
         email: '',
+        password: '',
       },
     }
   },

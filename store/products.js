@@ -19,11 +19,11 @@ export const mutations = {
     state.categoryId = valCategoryId
   },
   // Menyimpan hasil fetch ke state products
-  getProducts(state, products) {
+  updateProducts(state, products) {
     state.products = products
   },
   // Menyimpan hasil fetch ke state categories
-  getCategories(state, categories) {
+  updateCategories(state, categories) {
     state.categories.push(...categories)
   },
 }
@@ -40,7 +40,7 @@ export const actions = {
     return this.$axios
       .$get('http://localhost:3001/products')
       .then((response) => {
-        commit('getProducts', response.products)
+        commit('updateProducts', response.products)
       })
   },
   // Fetch data categories dari database melalui api
@@ -48,7 +48,7 @@ export const actions = {
     return this.$axios
       .$get('http://localhost:3001/categories')
       .then((response) => {
-        commit('getCategories', response.categories)
+        commit('updateCategories', response.categories)
       })
   },
 }

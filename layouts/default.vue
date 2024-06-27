@@ -110,7 +110,7 @@ export default {
   // Mounted dijalankan pertama setelah component di load browser
   mounted() {
     // Set item local storage untuk welcome screen pertama kali diakses
-    localStorage.setItem('welcomeScreen', true)
+    // localStorage.setItem('welcomeScreen', true)
     this.isWelcomeScreen()
   },
 }

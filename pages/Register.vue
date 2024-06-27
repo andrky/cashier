@@ -121,6 +121,9 @@ export default {
           this.$router.push('/login')
           // console.log(response)
         })
+        .catch((error) => {
+          this.isDisabled = false
+        })
     },
   },
 }

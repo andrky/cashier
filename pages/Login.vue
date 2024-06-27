@@ -21,7 +21,13 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click="onsubmit">Login</v-btn>
+          <v-btn color="primary" @click="onsubmit" :disabled="isDisabled">
+            <!-- Jika isDi  sabled false fungsikan btn login -->
+            <span v-if="!isDisabled">Login</span>
+            <!-- Jika isDisabled true tampilkan btn animasi -->
+            <v-progress-circular v-else color="primary" indeterminate>
+            </v-progress-circular>
+          </v-btn>
         </v-card-actions>
       </v-card>
       <p>
@@ -38,6 +44,7 @@
 export default {
   data() {
     return {
+      isDisabled: false,
       // Form input dari v-model disimpan disini
       form: {
         email: '',
@@ -48,10 +55,17 @@ export default {
   methods: {
     // Ketika klik tombol login maka data pada form akan dikirim ke backend menggunakan api
     onsubmit() {
+      // Setelah di klik disabled button dulu
+      this.isDisabled = true
       this.$axios
         .$post('http://localhost:3001/auth/login', this.form)
         .then((response) => {
+          // Setelah proses selesai aktifkan button
+          this.isDisabled = false
           console.log(response)
+        })
+        .catch((error) => {
+          this.isDisabled = false
         })
     },
   },

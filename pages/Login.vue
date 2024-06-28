@@ -4,6 +4,9 @@
       <v-card class="mb-2">
         <v-toolbar dark color="primary">Login</v-toolbar>
         <v-card-text>
+          <v-alert color="red lighten-2" dark v-if="isError">{{
+            message
+          }}</v-alert>
           <v-form>
             <v-text-field
               name="email"
@@ -45,6 +48,8 @@ export default {
   data() {
     return {
       isDisabled: false,
+      isError: false,
+      message: '',
       // Form input dari v-model disimpan disini
       form: {
         email: '',
@@ -73,6 +78,9 @@ export default {
           this.$router.push('/dashboard')
         })
         .catch((error) => {
+          // Mengambil respon error hasil dari backend
+          this.message = error.response.data.message
+          this.isError = true
           this.isDisabled = false
         })
     },

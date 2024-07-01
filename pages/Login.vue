@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   data() {
     return {
@@ -58,6 +60,12 @@ export default {
     }
   },
   methods: {
+    // Panggil mutation dari file auth.js
+    ...mapMutations('auth', {
+      setFullname: 'setFullname',
+      setAccessToken: 'setAccessToken',
+      setRefreshToken: 'setRefreshToken',
+    }),
     storeWelcomeScreen() {
       localStorage.setItem('welcomeScreen', true)
     },
@@ -68,12 +76,19 @@ export default {
       this.$axios
         .$post('http://localhost:3001/auth/login', this.form)
         .then((response) => {
+          // Login sukses
           // Store passed welcome screen
           if (!localStorage.welcomeScreen) {
             this.storeWelcomeScreen()
           }
           // Setelah proses selesai aktifkan button
           this.isDisabled = false
+
+          // Store auth data
+          this.setFullname(response.fullname)
+          this.setAccessToken(response.accessToken)
+          this.setRefreshToken(response.refreshToken)
+
           // Redirect to dashboard
           this.$router.push('/dashboard')
         })

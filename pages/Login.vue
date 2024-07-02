@@ -84,7 +84,7 @@ export default {
           // Setelah proses selesai aktifkan button
           this.isDisabled = false
 
-          // Store auth data
+          // Store data ke file auth berdasarkan hasil response backend
           this.setFullname(response.fullname)
           this.setAccessToken(response.accessToken)
           this.setRefreshToken(response.refreshToken)
@@ -99,6 +99,13 @@ export default {
           this.isDisabled = false
         })
     },
+  },
+  mounted() {
+    // console.log(this.$route)
+    if (this.$route.params.message == 'AUTH_REQUIRED') {
+      this.message = this.$route.params.message
+      this.isError = true
+    }
   },
 }
 </script>

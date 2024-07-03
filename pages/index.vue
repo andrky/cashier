@@ -9,3 +9,10 @@
     </v-col>
   </v-row>
 </template>
+
+<script>
+export default {
+  // Panggil function middleware ke folder middleware file authenticated
+  middleware: ['authenticated'],
+}
+</script>
